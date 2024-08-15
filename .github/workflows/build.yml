@@ -236,6 +236,12 @@ jobs:
       - lint
       - test
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        architecture:
+          - arm64
+          - x86_64
     steps:
       - id: harden-runner
         name: Harden the runner
@@ -320,7 +326,8 @@ jobs:
         # This runs through the AMI creation process but does not
         # actually create an AMI
         run: |
-          packer build -timestamp-ui \
+          packer build -only amazon-ebs.${{ matrix.architecture }} \
+            -timestamp-ui \
             -var skip_create_ami=true \
             -var winrm_password=${{ steps.process-user-data.outputs.pass }} \
             src/packer.pkr.hcl
