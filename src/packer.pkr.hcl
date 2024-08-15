@@ -113,8 +113,9 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 #   ami_name                    = "windows-server-2022-${local.timestamp}-arm64-ebs"
 #   ami_regions                 = var.ami_regions
 #   associate_public_ip_address = true
+#   communicator                = "winrm"
 #   encrypt_boot                = true
-#   instance_type               = "t4g.small"
+#   instance_type               = "t4g.large"
 #   kms_key_id                  = var.build_region_kms
 #   launch_block_device_mappings {
 #     delete_on_termination = true
@@ -127,7 +128,6 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 #   region_kms_key_ids = var.region_kms_keys
 #   skip_create_ami    = var.skip_create_ami
 #   source_ami         = data.amazon-ami.windows_server_2022_arm64.id
-#   ssh_username       = "admin"
 #   subnet_filter {
 #     filters = {
 #       "tag:Name" = "AMI Build"
