@@ -240,7 +240,8 @@ jobs:
       fail-fast: false
       matrix:
         architecture:
-          - arm64
+          # There are no Windows Server ARM64 base AMIs.
+          # - arm64
           - x86_64
     steps:
       - id: harden-runner
