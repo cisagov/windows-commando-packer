@@ -11,9 +11,9 @@
 
 # Let jsf9k own the sometimes-touchy AWS and Python playbooks, as well
 # as the packer.pkr.hcl file.
+/ansible/aws.yml @jsf9k
+/ansible/python.yml @jsf9k
 /packer.pkr.hcl @jsf9k
-/src/aws.yml @jsf9k
-/src/python.yml @jsf9k
 
 # These folks own all linting configuration files.
 /.ansible-lint @dav3r @felddy @jsf9k @mcdonnnj

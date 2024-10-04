@@ -184,20 +184,20 @@ build {
   ]
 
   provisioner "ansible" {
-    playbook_file = "src/upgrade.yml"
+    playbook_file = "ansible/upgrade.yml"
     use_proxy     = false
     use_sftp      = true
   }
 
   provisioner "ansible" {
-    playbook_file = "src/python.yml"
+    playbook_file = "ansible/python.yml"
     use_proxy     = false
     use_sftp      = true
   }
 
   provisioner "ansible" {
     ansible_env_vars = ["AWS_DEFAULT_REGION=${var.build_region}"]
-    playbook_file    = "src/playbook.yml"
+    playbook_file    = "ansible/playbook.yml"
     use_proxy        = false
     use_sftp         = true
   }

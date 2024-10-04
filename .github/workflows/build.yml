@@ -163,7 +163,7 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           pip install --upgrade --requirement requirements-test.txt
       - name: Install Ansible roles
-        run: ansible-galaxy install --force --role-file src/requirements.yml
+        run: ansible-galaxy install --force --role-file ansible/requirements.yml
       # This must happen before pre-commit is run or the Packer format
       # linter will throw an error.
       - name: Install Packer plugins
@@ -284,7 +284,7 @@ jobs:
           pip install --upgrade \
                       --requirement requirements.txt
       - name: Install Ansible roles
-        run: ansible-galaxy install --force --role-file src/requirements.yml
+        run: ansible-galaxy install --force --role-file ansible/requirements.yml
       - name: Assume AWS build role
         uses: aws-actions/configure-aws-credentials@v4
         with:
