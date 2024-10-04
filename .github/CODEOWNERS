@@ -11,6 +11,8 @@
 
 # Let jsf9k own the sometimes-touchy AWS and Python playbooks, as well
 # as the Packer template.
+/ami_arm64.pkr.hcl @jsf9k
+/ami_x86.pkr.hcl @jsf9k
 /ansible/aws.yml @jsf9k
 /ansible/python.yml @jsf9k
 /build.pkr.hcl @jsf9k
