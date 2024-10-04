@@ -166,6 +166,9 @@ terraform init --upgrade=true
 terraform apply
 ```
 
+<!-- BEGIN_TF_DOCS -->
+<!-- END_TF_DOCS -->
+
 ## New Repositories from a Skeleton ##
 
 Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
