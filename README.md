@@ -167,6 +167,43 @@ terraform apply
 ```
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements ##
+
+No requirements.
+
+## Providers ##
+
+| Name | Version |
+|------|---------|
+| amazon-ami | n/a |
+
+## Modules ##
+
+No modules.
+
+## Resources ##
+
+| Name | Type |
+|------|------|
+| [amazon-ami_amazon-ami.debian_bookworm_arm64](https://registry.terraform.io/providers/hashicorp/amazon-ami/latest/docs/data-sources/amazon-ami) | data source |
+| [amazon-ami_amazon-ami.debian_bookworm_x86_64](https://registry.terraform.io/providers/hashicorp/amazon-ami/latest/docs/data-sources/amazon-ami) | data source |
+
+## Inputs ##
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| ami\_regions | The list of AWS regions to copy the AMI to once it has been created. Example: ["us-east-1"] | `list(string)` | `[]` | no |
+| build\_region | The region in which to retrieve the base AMI from and build the new AMI. | `string` | `"us-east-1"` | no |
+| build\_region\_kms | The ID or ARN of the KMS key to use for AMI encryption. | `string` | `"alias/cool-amis"` | no |
+| is\_prerelease | The pre-release status to use for the tags applied to the created AMI. | `bool` | `false` | no |
+| region\_kms\_keys | A map of regions to copy the created AMI to and the KMS keys to use for encryption in that region. The keys for this map must match the values provided to the aws\_regions variable. Example: {"us-east-1": "alias/example-kms"} | `map(string)` | `{}` | no |
+| release\_tag | The GitHub release tag to use for the tags applied to the created AMI. | `string` | `""` | no |
+| release\_url | The GitHub release URL to use for the tags applied to the created AMI. | `string` | `""` | no |
+| skip\_create\_ami | Indicate if Packer should not create the AMI. | `bool` | `false` | no |
+
+## Outputs ##
+
+No outputs.
 <!-- END_TF_DOCS -->
 
 ## New Repositories from a Skeleton ##
