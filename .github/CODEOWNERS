@@ -11,8 +11,8 @@
 
 # Let jsf9k own the sometimes-touchy AWS and Python playbooks, as well
 # as the packer.pkr.hcl file.
+/packer.pkr.hcl @jsf9k
 /src/aws.yml @jsf9k
-/src/packer.pkr.hcl @jsf9k
 /src/python.yml @jsf9k
 
 # These folks own all linting configuration files.

@@ -112,7 +112,7 @@ jobs:
           sudo ln -s ${{ env.pythonLocation }}/bin/python3 \
           /usr/bin/python3
       - name: Install Packer plugins
-        run: packer init src
+        run: packer init .
       - name: Create machine image
         run: |
           packer build -only amazon-ebs.${{ matrix.architecture }} \
@@ -120,7 +120,7 @@ jobs:
             -var is_prerelease=${{ github.event.release.prerelease }} \
             -var release_tag=${{ github.event.release.tag_name }} \
             -var release_url=${{ github.event.release.html_url }} \
-            src/packer.pkr.hcl
+            packer.pkr.hcl
       - name: Remove /usr/bin/python3 symlink to the installed python
         run: |
           sudo mv /usr/bin/python3-default /usr/bin/python3
