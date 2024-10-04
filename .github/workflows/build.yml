@@ -313,7 +313,7 @@ jobs:
           packer build -only amazon-ebs.${{ matrix.architecture }} \
             -timestamp-ui \
             -var skip_create_ami=true \
-            packer.pkr.hcl
+            .
       - name: Remove /usr/bin/python3 symlink to the installed Python
         run: |
           sudo mv /usr/bin/python3-default /usr/bin/python3
