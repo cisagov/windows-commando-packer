@@ -13,6 +13,7 @@
 # as the Packer template.
 /ansible/aws.yml @jsf9k
 /ansible/python.yml @jsf9k
+/build.pkr.hcl @jsf9k
 /locals.pkr.hcl @jsf9k
 /packer.pkr.hcl @jsf9k
 /variables.pkr.hcl @jsf9k
