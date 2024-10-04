@@ -4,7 +4,7 @@
 
 This is a generic skeleton project that can be used to quickly get a
 new [cisagov](https://github.com/cisagov) GitHub
-[Packer](https://packer.io) project started. This skeleton project
+[Packer](https://packer.io) template project started. This skeleton project
 contains [licensing information](LICENSE), as well as
 [pre-commit hooks](https://pre-commit.com) and
 [GitHub Actions](https://github.com/features/actions) configurations
@@ -69,7 +69,7 @@ how the build was triggered from GitHub.
 
 1. **Non-release test**: After a normal commit or pull request GitHub Actions
    will build the project, and run tests and validation on the
-   packer configuration. It will **not** build an image.
+   Packer template. It will **not** build an image.
 1. **Pre-release deploy**: Publish a GitHub release
    with the "This is a pre-release" checkbox checked. An image will be built
    and deployed using the [`prerelease`](.github/workflows/prerelease.yml)
@@ -104,7 +104,7 @@ source_profile = build-skeleton-packer
 role_session_name = example
 ```
 
-The [Packer template](packer.pkr.hcl) defines a number of variables:
+The [Packer template](variables.pkr.hcl) defines a number of variables:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
@@ -134,7 +134,7 @@ AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui
 ```
 
 If you are satisfied with your pre-release image, you can easily create a release
-that deploys to all regions by adding additional regions to the packer configuration.
+that deploys to all regions by adding additional regions to the Packertemplate.
 This can be done by using a `.pkrvars.hcl` for example with `release.pkrvars.hcl`:
 
 ```hcl
