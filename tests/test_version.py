@@ -7,7 +7,7 @@ import os
 import pytest
 
 GITHUB_RELEASE_TAG = os.getenv("GITHUB_RELEASE_TAG")
-VERSION_FILE = "src/version.txt"
+VERSION_FILE = "version.txt"
 
 
 @pytest.mark.skipif(
