@@ -39,8 +39,6 @@ data "amazon-ami" "debian_bookworm_x86_64" {
   region      = var.build_region
 }
 
-locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
-
 source "amazon-ebs" "arm64" {
   ami_name                    = "example-hvm-${local.timestamp}-arm64-ebs"
   ami_regions                 = var.ami_regions
