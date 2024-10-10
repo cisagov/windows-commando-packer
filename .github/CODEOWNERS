@@ -18,8 +18,8 @@
 /base_amis.pkr.hcl @jsf9k
 /build.pkr.hcl @jsf9k
 /locals.pkr.hcl @jsf9k
-/packer.pkr.hcl @jsf9k
 /variables.pkr.hcl @jsf9k
+/versions.pkr.hcl @jsf9k
 
 # These folks own all linting configuration files.
 /.ansible-lint @dav3r @felddy @jsf9k @mcdonnnj
