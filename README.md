@@ -122,7 +122,7 @@ AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui
 ```
 
 If you are satisfied with your pre-release image, you can easily create a release
-that deploys to all regions by adding additional regions to the Packertemplate.
+that deploys to all regions by adding additional regions to the Packer template.
 This can be done by using a `.pkrvars.hcl` for example with `release.pkrvars.hcl`:
 
 ```hcl
