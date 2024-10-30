@@ -178,6 +178,8 @@ jobs:
   test:
     needs:
       - diagnostics
+    # This job does not need any permissions
+    permissions: {}
     runs-on: ubuntu-latest
     steps:
       - id: harden-runner
@@ -225,6 +227,8 @@ jobs:
     needs:
       - lint
       - test
+    # This job does not need any permissions
+    permissions: {}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

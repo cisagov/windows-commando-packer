@@ -20,6 +20,8 @@ env:
 jobs:
   diagnostics:
     name: Run diagnostics
+    # This job does not need any permissions
+    permissions: {}
     runs-on: ubuntu-latest
     steps:
       # Note that a duplicate of this step must be added at the top of
@@ -38,6 +40,8 @@ jobs:
   release:
     needs:
       - diagnostics
+    # This job does not need any permissions
+    permissions: {}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
