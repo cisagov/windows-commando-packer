@@ -50,8 +50,6 @@ jobs:
           - arm64
           - x86_64
     steps:
-      # Note that a duplicate of this step must be added at the top of
-      # each job.
       - uses: GitHubSecurityLab/actions-permissions/monitor@v1
         with:
           # Uses the organization variable unless overridden
