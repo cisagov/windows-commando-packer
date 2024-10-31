@@ -178,8 +178,9 @@ jobs:
   test:
     needs:
       - diagnostics
-    # This job does not need any permissions
-    permissions: {}
+    permissions:
+      # actions/checkout needs this to fetch code
+      contents: read
     runs-on: ubuntu-latest
     steps:
       # Note that a duplicate of this step must be added at the top of
@@ -233,8 +234,9 @@ jobs:
     needs:
       - lint
       - test
-    # This job does not need any permissions
-    permissions: {}
+    permissions:
+      # actions/checkout needs this to fetch code
+      contents: read
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

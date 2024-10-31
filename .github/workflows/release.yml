@@ -46,8 +46,9 @@ jobs:
   release:
     needs:
       - diagnostics
-    # This job does not need any permissions
-    permissions: {}
+    permissions:
+      # actions/checkout needs this to fetch code
+      contents: read
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
