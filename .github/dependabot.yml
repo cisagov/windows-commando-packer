@@ -7,6 +7,7 @@
 
 updates:
   - directory: /
+<<<<<<< HEAD
     ignore:
       # Managed by cisagov/skeleton-generic
       - dependency-name: actions/cache
@@ -22,6 +23,23 @@ updates:
       - dependency-name: step-security/harden-runner
       # # Managed by cisagov/skeleton-packer
       # - dependency-name: aws-actions/configure-aws-credentials
+=======
+    # ignore:
+    #   # Managed by cisagov/skeleton-generic
+    #   - dependency-name: actions/cache
+    #   - dependency-name: actions/checkout
+    #   - dependency-name: actions/setup-go
+    #   - dependency-name: actions/setup-python
+    #   - dependency-name: cisagov/setup-env-github-action
+    #   - dependency-name: crazy-max/ghaction-dump-context
+    #   - dependency-name: crazy-max/ghaction-github-labeler
+    #   - dependency-name: crazy-max/ghaction-github-status
+    #   - dependency-name: GitHubSecurityLab/actions-permissions
+    #   - dependency-name: hashicorp/setup-packer
+    #   - dependency-name: hashicorp/setup-terraform
+    #   - dependency-name: mxschmitt/action-tmate
+    #   - dependency-name: step-security/harden-runner
+>>>>>>> 8824475 (Update the commented out dependabot ignore directives)
     package-ecosystem: github-actions
     schedule:
       interval: weekly
