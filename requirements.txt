@@ -23,12 +23,14 @@ ansible>=10,<11
 # Hence we never want to install those versions.
 #
 # Note that the pip-audit pre-commit hook identifies a vulnerability
-# in ansible-core 2.16.13.
+# in ansible-core 2.16.13.  Normally we would pin ansible-core
+# accordingly (>2.16.13), but the above pin of ansible>=10 effectively
+# pins ansible-core to >=2.17 anyway so that's what we use.
 #
 # Note that any changes made to this dependency must also be made in
 # requirements-test.txt in cisagov/skeleton-ansible-role and
 # .pre-commit-config.yaml in cisagov/skeleton-generic.
-ansible-core>2.16.13
+ansible-core>=2.17
 boto3
 docopt
 semver
