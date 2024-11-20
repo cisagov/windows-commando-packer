@@ -12,6 +12,10 @@
 # identifies a vulnerability in ansible-core 2.16.13, but all versions
 # of ansible 9 have a dependency on ~=2.16.X.
 #
+# It is also a good idea to go ahead and upgrade to version 10 since
+# version 9 is going EOL at the end of November:
+# https://endoflife.date/ansible
+#
 # We have tested against version 10.  We want to avoid automatically
 # jumping to another major version without testing, since there are
 # often breaking changes across major versions.  This is the reason
@@ -26,6 +30,10 @@ ansible>=10,<11
 # in ansible-core 2.16.13.  Normally we would pin ansible-core
 # accordingly (>2.16.13), but the above pin of ansible>=10 effectively
 # pins ansible-core to >=2.17 anyway so that's what we use.
+#
+# It is also a good idea to go ahead and upgrade to ansible-core 2.17
+# since security support for ansible-core 2.16 ends this month:
+# https://docs.ansible.com/ansible/devel/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix
 #
 # Note that any changes made to this dependency must also be made in
 # requirements-test.txt in cisagov/skeleton-ansible-role and
