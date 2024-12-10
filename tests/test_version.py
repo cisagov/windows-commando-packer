@@ -16,10 +16,8 @@ VERSION_FILE = "version.txt"
 )
 def test_release_version():
     """Verify that release tag version agrees with the module version."""
-    pkg_vars = {}
     with open(VERSION_FILE) as f:
-        exec(f.read(), pkg_vars)  # nosec
-    project_version = pkg_vars["__version__"]
+        project_version = f.read().strip()
     assert (
         GITHUB_RELEASE_TAG == f"v{project_version}"
     ), "GITHUB_RELEASE_TAG does not match the project version"

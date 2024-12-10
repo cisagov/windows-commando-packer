@@ -281,7 +281,7 @@ for req_file in "requirements-dev.txt" "requirements-test.txt" "requirements.txt
 done
 
 # Install Packer plugin dependencies
-packer init -upgrade src
+packer init -upgrade .
 
 # Install git pre-commit hooks now or later.
 pre-commit install ${INSTALL_HOOKS:+"--install-hooks"}
