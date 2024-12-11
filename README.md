@@ -118,7 +118,7 @@ Here is an example of how to kick off a pre-release build:
 ```console
 pip install --requirement requirements-dev.txt
 ansible-galaxy install --force --force-with-deps --role-file ansible/requirements.yml
-AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui -var release_tag=$(./bump-version show) -var is_prerelease=true packer.pkr.hcl
+AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui -var release_tag=$(./bump-version show) -var is_prerelease=true .
 ```
 
 If you are satisfied with your pre-release image, you can easily create a release
@@ -135,7 +135,7 @@ region_kms_keys = {
 ```
 
 ```console
-AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui -var-file release.pkrvars.hcl packer.pkr.hcl
+AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui -var-file release.pkrvars.hcl .
 ```
 
 ### Giving Other AWS Accounts Permission to Launch the Image ###
