@@ -170,8 +170,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [amazon-ami_amazon-ami.debian_bookworm_arm64](https://registry.terraform.io/providers/hashicorp/amazon-ami/latest/docs/data-sources/amazon-ami) | data source |
-| [amazon-ami_amazon-ami.debian_bookworm_x86_64](https://registry.terraform.io/providers/hashicorp/amazon-ami/latest/docs/data-sources/amazon-ami) | data source |
+| [amazon-ami_amazon-ami.windows_server_2022_x86_64](https://registry.terraform.io/providers/hashicorp/amazon-ami/latest/docs/data-sources/amazon-ami) | data source |
 
 ## Inputs ##
 
@@ -185,6 +184,8 @@ No modules.
 | release\_tag | The GitHub release tag to use for the tags applied to the created AMI. | `string` | `""` | no |
 | release\_url | The GitHub release URL to use for the tags applied to the created AMI. | `string` | `""` | no |
 | skip\_create\_ami | Indicate if Packer should not create the AMI. | `bool` | `false` | no |
+| winrm\_password | The password used to connect to the instance via WinRM. | `string` | `""` | no |
+| winrm\_username | The username used to connect to the instance via WinRM. | `string` | `"Administrator"` | no |
 
 ## Outputs ##
 
