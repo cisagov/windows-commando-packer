@@ -11,7 +11,7 @@ password = ssm.get_parameter(
     Name="/windows/server/administrator/password", WithDecryption=True
 )["Parameter"]["Value"]
 
-user_data_file_location = "./src/winrm_bootstrap.txt"
+user_data_file_location = "./winrm_bootstrap.txt"
 with open(user_data_file_location) as user_data_file:
     # Process the user data file with the Windows Administrator password
     Template(user_data_file.read()).stream(password=password).dump(

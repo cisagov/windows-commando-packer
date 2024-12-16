@@ -33,7 +33,7 @@
 #     Release            = var.release_tag
 #     Team               = "VM Fusion - Development"
 #   }
-#   user_data_file = "ansible/winrm_bootstrap.txt"
+#   user_data_file = "winrm_bootstrap.txt"
 #   vpc_filter {
 #     filters = {
 #       "tag:Name" = "AMI Build"
