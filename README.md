@@ -64,7 +64,7 @@ how the build was triggered from GitHub.
 
 1. **Non-release test**: After a normal commit or pull request GitHub Actions
    will build the project, and run tests and validation on the
-   packer configuration. It will **not** build an image.
+   Packer template. It will **not** build an image.
 1. **Pre-release deploy**: Publish a GitHub release
    with the "This is a pre-release" checkbox checked. An image will be built
    and deployed using the [`prerelease`](.github/workflows/prerelease.yml)
@@ -99,22 +99,8 @@ source_profile = build-windows-server-packer
 role_session_name = example
 ```
 
-The [Packer template](src/packer.pkr.hcl) defines a number of variables:
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| ami\_regions | The list of AWS regions to copy the AMI to once it has been created. Example: ["us-east-1"] | `list(string)` | `[]` | no |
-| build\_region | The region in which to retrieve the base AMI from and build the new AMI. | `string` | `"us-east-1"` | no |
-| build\_region\_kms | The ID or ARN of the KMS key to use for AMI encryption. | `string` | `"alias/cool-amis"` | no |
-| is\_prerelease | The pre-release status to use for the tags applied to the created AMI. | `bool` | `false` | no |
-| region\_kms\_keys | A map of regions to copy the created AMI to and the KMS keys to use for encryption in that region. The keys for this map must match the values provided to the aws\_regions variable. Example: {"us-east-1": "alias/example-kms"} | `map(string)` | `{}` | no |
-| release\_tag | The GitHub release tag to use for the tags applied to the created AMI. | `string` | `""` | no |
-| release\_url | The GitHub release URL to use for the tags applied to the created AMI. | `string` | `""` | no |
-| skip\_create\_ami | Indicate if Packer should not create the AMI. | `bool` | `false` | no |
-| winrm\_password | The password used to connect to the instance via WinRM. | `string` | n/a | yes |
-| winrm\_username | The username used to connect to the instance via WinRM. | `string` | `"Administrator"` | no |
-
-Changing these defaults can be done through a `.pkrvars.hcl` file:
+This Packer template defines a number of variables whose defaults can be changed
+through a `.pkrvars.hcl` file:
 
 ```hcl
 build_region = "us-east-2"
@@ -127,12 +113,12 @@ Here is an example of how to kick off a pre-release build:
 ```console
 pip install --requirement requirements-dev.txt
 AWS_PROFILE=cool-images-ec2amicreate-windows-server-packer \
-packer build --timestamp-ui -var release_tag=$(./bump_version.sh show) \
--var is_prerelease=true -var winrm_password="your-winrm-password" src/packer.pkr.hcl
+packer build --timestamp-ui -var release_tag=$(./bump-version show) \
+-var is_prerelease=true -var winrm_password="your-winrm-password" .
 ```
 
 If you are satisfied with your pre-release image, you can easily create a release
-that deploys to all regions by adding additional regions to the packer configuration.
+that deploys to all regions by adding additional regions to the Packer template.
 This can be done by using a `.pkrvars.hcl` for example with `release.pkrvars.hcl`:
 
 ```hcl
@@ -146,7 +132,7 @@ winrm_password = "your-winrm-password"
 ```
 
 ```console
-AWS_PROFILE=cool-images-ec2amicreate-windows-server-packer packer build --timestamp-ui -var-file release.pkrvars.hcl src/packer.pkr.hcl
+AWS_PROFILE=cool-images-ec2amicreate-windows-server-packer packer build --timestamp-ui -var-file release.pkrvars.hcl .
 ```
 
 ### Giving Other AWS Accounts Permission to Launch the Image ###
@@ -164,6 +150,47 @@ terraform workspace select ENVIRONMENT_TYPE
 terraform init --upgrade=true
 terraform apply
 ```
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements ##
+
+No requirements.
+
+## Providers ##
+
+| Name | Version |
+|------|---------|
+| amazon-ami | n/a |
+
+## Modules ##
+
+No modules.
+
+## Resources ##
+
+| Name | Type |
+|------|------|
+| [amazon-ami_amazon-ami.windows_server_2022_x86_64](https://registry.terraform.io/providers/hashicorp/amazon-ami/latest/docs/data-sources/amazon-ami) | data source |
+
+## Inputs ##
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| ami\_regions | The list of AWS regions to copy the AMI to once it has been created. Example: ["us-east-1"] | `list(string)` | `[]` | no |
+| build\_region | The region in which to retrieve the base AMI from and build the new AMI. | `string` | `"us-east-1"` | no |
+| build\_region\_kms | The ID or ARN of the KMS key to use for AMI encryption. | `string` | `"alias/cool-amis"` | no |
+| is\_prerelease | The pre-release status to use for the tags applied to the created AMI. | `bool` | `false` | no |
+| region\_kms\_keys | A map of regions to copy the created AMI to and the KMS keys to use for encryption in that region. The keys for this map must match the values provided to the aws\_regions variable. Example: {"us-east-1": "alias/example-kms"} | `map(string)` | `{}` | no |
+| release\_tag | The GitHub release tag to use for the tags applied to the created AMI. | `string` | `""` | no |
+| release\_url | The GitHub release URL to use for the tags applied to the created AMI. | `string` | `""` | no |
+| skip\_create\_ami | Indicate if Packer should not create the AMI. | `bool` | `false` | no |
+| winrm\_password | The password used to connect to the instance via WinRM. | `string` | `""` | no |
+| winrm\_username | The username used to connect to the instance via WinRM. | `string` | `"Administrator"` | no |
+
+## Outputs ##
+
+No outputs.
+<!-- END_TF_DOCS -->
 
 ## Contributing ##
 
