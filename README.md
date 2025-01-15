@@ -29,15 +29,63 @@ next steps. Note that you will need to know where your team stores their
 remote profile data in order to use
 [`aws-profile-sync`](https://github.com/cisagov/aws-profile-sync).
 
-To create the build user, follow these instructions:
+### Creating a Build User ###
 
-```console
-cd terraform-build-user
-terraform init --upgrade=true
-terraform apply
-```
+You will need to create a build user for each environment that you use.  The
+following steps show how to create a build user for an environment named "dev".
+You will need to repeat this process any additional environments.
 
-Once the user is created you will need to update the
+1. Change into the `terraform-build-user` directory:
+
+   ```console
+   cd terraform-build-user
+   ```
+
+1. Create a backend configuration file named `dev.tfconfig` containing the
+name of bucket where "dev" environment Terraform state is stored - this file is
+required to initialize the Terraform backend in each environment:
+
+    ```hcl
+    bucket = "my-dev-terraform-state-bucket"
+    ```
+
+1. Initialize the Terraform backend for the "dev" environment using your backend
+   configuration file:
+
+    ```console
+    terraform init -backend-config=dev.tfconfig
+    ```
+
+    > [!NOTE]
+    > When performing this step for additional environments (i.e. not your first
+    > environment), use the `-reconfigure` flag:
+    >
+    > ```console
+    > terraform init -backend-config=other-env.tfconfig -reconfigure
+    > ```
+
+1. Create a Terraform variables file named `dev.tfvars` containing all
+required variables (currently only `terraform_state_bucket`):
+
+    ```hcl
+    terraform_state_bucket = "my-dev-terraform-state-bucket"
+    ```
+
+1. Create a Terraform workspace for the "dev" environment:
+
+    ```console
+   terraform workspace new dev
+   ```
+
+1. Initialize and upgrade the Terraform workspace, then apply the configuration
+   to create the build user in the "dev" environment:
+
+    ```console
+    terraform init -upgrade=true
+    terraform apply -var-file=dev.tfvars
+    ```
+
+Once the build user is created you will need to update the
 [repository's secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets)
 with the new encrypted environment variables. This should be done using the
 [`terraform-to-secrets`](https://github.com/cisagov/development-guide/tree/develop/project_setup#terraform-iam-credentials-to-github-secrets-)
