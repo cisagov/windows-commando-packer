@@ -308,12 +308,9 @@ jobs:
       - name: Install Packer plugins
         run: packer init .
       - name: Create machine image
-        # This runs through the AMI creation process but does not
-        # actually create an AMI
         run: |
           packer build -only amazon-ebs.${{ matrix.architecture }} \
             -timestamp-ui \
-            -var skip_create_ami=true \
             .
       - name: Remove /usr/bin/python3 symlink to the installed Python
         run: |
