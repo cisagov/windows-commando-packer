@@ -37,6 +37,7 @@ jobs:
         name: Dump context
         uses: crazy-max/ghaction-dump-context@v2
   prerelease:
+    environment: staging-a
     needs:
       - diagnostics
     permissions:
@@ -98,7 +99,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
-          role-to-assume: ${{ secrets.BUILD_ROLE_TO_ASSUME_STAGING }}
+          role-to-assume: ${{ secrets.BUILD_ROLE_TO_ASSUME }}
           role-duration-seconds: 3600
       # When called by Packer, Ansible will find /usr/bin/python3 and
       # use it; therefore, we must ensure that /usr/bin/python3 points
