@@ -1,5 +1,5 @@
 module "iam_user" {
-  source = "github.com/cisagov/ami-build-iam-user-tf-module"
+  source = "github.com/cisagov/ami-build-iam-user-tf-module?ref=improvement%2Fsingle-build-env"
 
   providers = {
     aws            = aws
