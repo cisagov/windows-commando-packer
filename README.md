@@ -191,18 +191,62 @@ AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui
 ### Giving Other AWS Accounts Permission to Launch the Image ###
 
 After the AMI has been successfully created, you may want to allow other
-accounts in your AWS organization permission to launch it. For this project,
-we want to allow all accounts whose names begin with "env" to launch the
-most-recently-created AMI. To do that, follow these instructions, noting that
-"ENVIRONMENT_TYPE" below should be replaced with where the AMI was created
-(e.g "production", "staging", etc.):
+accounts in your AWS organization permission to launch it.  The following steps
+show how to do this for an environment named "dev". You will need to repeat this
+process any additional environments.
 
-```console
-cd terraform-post-packer
-terraform workspace select ENVIRONMENT_TYPE
-terraform init --upgrade=true
-terraform apply
-```
+> [!NOTE]
+> Refer to the `ami_share_account_name_regex` variable if you want to customize
+> which accounts in your AWS organization to share your AMI with.
+
+1. Change into the `terraform-post-packer` directory:
+
+   ```console
+   cd terraform-post-packer
+   ```
+
+1. Create a backend configuration file named `dev.tfconfig` containing the
+name of bucket where "dev" environment Terraform state is stored - this file is
+required to initialize the Terraform backend in each environment:
+
+    ```hcl
+    bucket = "my-dev-terraform-state-bucket"
+    ```
+
+1. Initialize the Terraform backend for the "dev" environment using your backend
+   configuration file:
+
+    ```console
+    terraform init -backend-config=dev.tfconfig
+    ```
+
+    > [!NOTE]
+    > When performing this step for additional environments (i.e. not your first
+    > environment), use the `-reconfigure` flag:
+    >
+    > ```console
+    > terraform init -backend-config=other-env.tfconfig -reconfigure
+    > ```
+
+1. If not already created, create a Terraform workspace for the "dev" environment:
+
+    ```console
+   terraform workspace new dev
+   ```
+
+   Otherwise, switch to the existing "dev" workspace:
+
+    ```console
+   terraform workspace select dev
+   ```
+
+1. Initialize and upgrade the Terraform workspace, then apply the configuration
+   to share the AMI with accounts in the "dev" environment:
+
+    ```console
+    terraform init -upgrade=true
+    terraform apply
+    ```
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements ##
