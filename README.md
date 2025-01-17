@@ -115,19 +115,21 @@ will not be able to build images.
 GitHub Actions can build this project in three different modes depending on
 how the build was triggered from GitHub.
 
-1. **Non-release test**: After a normal commit or pull request GitHub Actions
-   will build the project, and run tests and validation on the
-   Packer template. It will **not** build an image.
-1. **Pre-release deploy**: Publish a GitHub release
-   with the "This is a pre-release" checkbox checked. An image will be built
-   and deployed using the [`prerelease`](.github/workflows/prerelease.yml)
-   workflow. This should be configured to deploy the image to a single region
-   using a non-production account (e.g. "staging").
-1. **Production release deploy**: Publish a GitHub release with
-   the "This is a pre-release" checkbox unchecked. An image will be built
-   and deployed using the [`release`](.github/workflows/release.yml)
-   workflow. This should be configured to deploy the image to multiple regions
-   using a production account.
+1. **Development release**: After a normal commit or pull request GitHub Actions
+   will build the project, and run tests and validation on the Packer template.
+   An image will be built and deployed using the
+   [`build`](.github/workflows/build.yml) workflow.  This should be configured
+   to deploy the image to a single region using a development account.
+1. **Pre-release**: Publish a GitHub release with the "This is a pre-release"
+   checkbox checked.  An image will be built and deployed using the
+   [`prerelease`](.github/workflows/prerelease.yml) workflow.  This should be
+   configured to deploy the image to a single region using a non-production
+   account (e.g. "staging").
+1. **Production release**: Publish a GitHub release with the "This is a
+   pre-release" checkbox unchecked.  An image will be built and deployed using
+   the [`release`](.github/workflows/release.yml) workflow.  This should be
+   configured to deploy the image to multiple regions using a production
+   account.
 
 ### Using Your Local Environment ###
 
