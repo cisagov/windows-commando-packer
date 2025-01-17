@@ -133,6 +133,8 @@ jobs:
         run: |
           packer build -only amazon-ebs.${{ matrix.architecture }} \
             -timestamp-ui \
+            -var github_ref_name=${{ github.ref_name }} \
+            -var github_sha=${{ github.sha }} \
             -var is_prerelease=${{ github.event.release.prerelease }} \
             -var release_tag=${{ github.event.release.tag_name }} \
             -var release_url=${{ github.event.release.html_url }} \

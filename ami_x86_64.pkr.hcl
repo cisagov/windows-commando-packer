@@ -26,7 +26,9 @@ source "amazon-ebs" "x86_64" {
     Application        = "Example"
     Architecture       = "x86_64"
     Base_AMI_Name      = data.amazon-ami.debian_bookworm_x86_64.name
+    GitHub_Ref_Name    = var.github_ref_name
     GitHub_Release_URL = var.release_url
+    GitHub_SHA         = var.github_sha
     OS_Version         = "Debian Bookworm"
     Pre_Release        = var.is_prerelease
     Release            = var.release_tag

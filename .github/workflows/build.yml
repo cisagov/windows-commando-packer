@@ -311,6 +311,8 @@ jobs:
         run: |
           packer build -only amazon-ebs.${{ matrix.architecture }} \
             -timestamp-ui \
+            -var github_ref_name=${{ github.ref_name }} \
+            -var github_sha=${{ github.sha }} \
             .
       - name: Remove /usr/bin/python3 symlink to the installed Python
         run: |
