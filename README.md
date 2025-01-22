@@ -33,7 +33,7 @@ remote profile data in order to use
 
 You will need to create a build user for each environment that you use.  The
 following steps show how to create a build user for an environment named "dev".
-You will need to repeat this process any additional environments.
+You will need to repeat this process for any additional environments.
 
 1. Change into the `terraform-build-user` directory:
 
@@ -42,7 +42,7 @@ You will need to repeat this process any additional environments.
    ```
 
 1. Create a backend configuration file named `dev.tfconfig` containing the
-name of bucket where "dev" environment Terraform state is stored - this file is
+name of the bucket where "dev" environment Terraform state is stored - this file is
 required to initialize the Terraform backend in each environment:
 
     ```hcl
@@ -193,7 +193,7 @@ AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui
 After the AMI has been successfully created, you may want to allow other
 accounts in your AWS organization permission to launch it.  The following steps
 show how to do this for an environment named "dev". You will need to repeat this
-process any additional environments.
+process for any additional environments.
 
 > [!NOTE]
 > Refer to the `ami_share_account_name_regex` variable if you want to customize
@@ -206,7 +206,7 @@ process any additional environments.
    ```
 
 1. Create a backend configuration file named `dev.tfconfig` containing the
-name of bucket where "dev" environment Terraform state is stored - this file is
+name of the bucket where "dev" environment Terraform state is stored - this file is
 required to initialize the Terraform backend in each environment:
 
     ```hcl
