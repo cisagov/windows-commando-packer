@@ -42,8 +42,8 @@ You will need to repeat this process for any additional environments.
    ```
 
 1. Create a backend configuration file named `dev.tfconfig` containing the
-name of the bucket where "dev" environment Terraform state is stored - this file is
-required to initialize the Terraform backend in each environment:
+name of the bucket where "dev" environment Terraform state is stored - this file
+is required to initialize the Terraform backend in each environment:
 
     ```hcl
     bucket = "my-dev-terraform-state-bucket"
@@ -206,8 +206,8 @@ process for any additional environments.
    ```
 
 1. Create a backend configuration file named `dev.tfconfig` containing the
-name of the bucket where "dev" environment Terraform state is stored - this file is
-required to initialize the Terraform backend in each environment:
+name of the bucket where "dev" environment Terraform state is stored - this file
+is required to initialize the Terraform backend in each environment:
 
     ```hcl
     bucket = "my-dev-terraform-state-bucket"
