@@ -115,9 +115,9 @@ will not be able to build images.
 GitHub Actions can build this project in three different modes depending on
 how the build was triggered from GitHub.
 
-1. **Development release**: After a normal commit or pull request GitHub Actions
-   will build the project, and run tests and validation on the Packer template.
-   An image will be built and deployed using the
+1. **Development release**: After a normal commit and also on a pull request,
+   GitHub Actions will run tests and validation on the Packer template, and then
+   build the project.  An image will be built and deployed using the
    [`build`](.github/workflows/build.yml) workflow.  This should be configured
    to deploy the image to a single region using a development account.
 1. **Pre-release**: Publish a GitHub release with the "This is a pre-release"
