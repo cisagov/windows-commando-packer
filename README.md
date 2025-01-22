@@ -29,7 +29,7 @@ next steps. Note that you will need to know where your team stores their
 remote profile data in order to use
 [`aws-profile-sync`](https://github.com/cisagov/aws-profile-sync).
 
-### Creating a Build User ###
+### Creating a build user ###
 
 You will need to create a build user for each environment that you use.  The
 following steps show how to create a build user for an environment named "dev".
@@ -104,7 +104,7 @@ IMPORTANT: The account where your images will be built must have a VPC and
 a public subnet both tagged with the name "AMI Build", otherwise `packer`
 will not be able to build images.
 
-## Building the Image ##
+## Building the image ##
 
 ### Using GitHub Actions ###
 
@@ -131,7 +131,7 @@ how the build was triggered from GitHub.
    configured to deploy the image to multiple regions using a production
    account.
 
-### Using Your Local Environment ###
+### Using Your local environment ###
 
 Packer will use your
 [standard AWS environment](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
@@ -188,7 +188,7 @@ region_kms_keys = {
 AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui -var-file release.pkrvars.hcl .
 ```
 
-### Giving Other AWS Accounts Permission to Launch the Image ###
+### Giving other AWS accounts permission to launch the image ###
 
 After the AMI has been successfully created, you may want to allow other
 accounts in your AWS organization permission to launch it.  The following steps
@@ -290,7 +290,7 @@ No modules.
 No outputs.
 <!-- END_TF_DOCS -->
 
-## New Repositories from a Skeleton ##
+## New repositories from a skeleton ##
 
 Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
 for step-by-step instructions on how to start a new repository from
