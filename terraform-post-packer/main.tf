@@ -1,27 +1,6 @@
-# ------------------------------------------------------------------------------
-# Retrieve the information for all accounts in the organization.  This is used to lookup
-# the Images account ID for use in the calculation of the related env account names.
-# ------------------------------------------------------------------------------
-data "aws_organizations_organization" "cool" {
-  provider = aws.master
-}
-
-# ------------------------------------------------------------------------------
-# Evaluate expressions for use throughout this configuration.
-# ------------------------------------------------------------------------------
-locals {
-  # Find the Images account by id.
-  images_account_name = [
-    for x in data.aws_organizations_organization.cool.accounts :
-    x.name if x.id == data.aws_caller_identity.images.account_id
-  ][0]
-
-  # Calculate what the names of the accounts that are allowed to use
-  # this AMI should look like.  In this case the only accounts that
-  # are allowed to use this AMI are the env* accounts of the same type
-  # (production, staging, etc.) as the Images account.
-  images_account_type = trim(split("(", local.images_account_name)[1], ")")
-  account_name_regex  = format("^env[[:digit:]]+ \\(%s\\)$", local.images_account_type)
+# Use aws_caller_identity with the default provider (Images account)
+# so we can provide the Images account ID below
+data "aws_caller_identity" "images" {
 }
 
 # The IDs of all ARM64 cisagov/skeleton-packer AMIs
@@ -63,7 +42,7 @@ module "ami_launch_permission_arm64" {
     aws.master = aws.master
   }
 
-  account_name_regex   = local.account_name_regex
+  account_name_regex   = var.ami_share_account_name_regex
   ami_id               = each.value
   extraorg_account_ids = var.extraorg_account_ids
 }
@@ -118,7 +97,7 @@ module "ami_launch_permission_x86_64" {
     aws.master = aws.master
   }
 
-  account_name_regex   = local.account_name_regex
+  account_name_regex   = var.ami_share_account_name_regex
   ami_id               = each.value
   extraorg_account_ids = var.extraorg_account_ids
 }
