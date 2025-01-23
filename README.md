@@ -131,7 +131,7 @@ how the build was triggered from GitHub.
    configured to deploy the image to multiple regions using a production
    account.
 
-### Using Your local environment ###
+### Using your local environment ###
 
 Packer will use your
 [standard AWS environment](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
