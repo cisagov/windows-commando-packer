@@ -25,9 +25,17 @@ source "amazon-ebs" "x86_64" {
   tags = {
     Application        = "Windows Server 2022"
     Architecture       = "x86_64"
+<<<<<<< HEAD
     Base_AMI_Name      = data.amazon-ami.windows_server_2022_x86_64.name
     GitHub_Release_URL = var.release_url
     OS_Version         = "Windows Server 2022"
+=======
+    Base_AMI_Name      = data.amazon-ami.debian_bookworm_x86_64.name
+    GitHub_Ref_Name    = var.github_ref_name
+    GitHub_Release_URL = var.release_url
+    GitHub_SHA         = var.github_sha
+    OS_Version         = "Debian Bookworm"
+>>>>>>> b702664447def7d112564cadeda1ebe32e064c2d
     Pre_Release        = var.is_prerelease
     Release            = var.release_tag
     Team               = "VM Fusion - Development"
